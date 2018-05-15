@@ -67,7 +67,7 @@ public class HomeController extends BaseController {
         OrderDetail orderDetail = new OrderDetail();
         model.addAttribute("orderDetail", orderDetail);
         List<Object[]> listTest1 =  orderDetailRepository.topdathangnhieu();
-        System.out.println("id = " + listTest1.get(0)[0] + "productId = " + listTest1.get(0)[1]);
+//        System.out.println("id = " + listTest1.get(0)[0] + "productId = " + listTest1.get(0)[1]);
         model.addAttribute("listTest1",listTest1);
         return "producttop";
     }

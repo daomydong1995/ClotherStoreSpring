@@ -84,7 +84,7 @@ public class ReportController {
         OrderDetail orderDetail = new OrderDetail();
         model.addAttribute("orderDetail", orderDetail);
         List<Object[]> listTest =  orderDetailRepository.repo();
-        System.out.println("id = " + listTest.get(0)[0] + "productId = " + listTest.get(0)[1]);
+//        System.out.println("id = " + listTest.get(0)[0] + "productId = " + listTest.get(0)[1]);
         model.addAttribute("listTest",listTest);
         return "/admin/report";
     }
@@ -112,7 +112,7 @@ public class ReportController {
         OrderDetail orderDetail = new OrderDetail();
         model.addAttribute("orderDetail", orderDetail);
         List<Object[]> listTest =  orderDetailRepository.repowheresuppliers();
-        System.out.println("id = " + listTest.get(0)[0] + "productId = " + listTest.get(0)[1]);
+//        System.out.println("id = " + listTest.get(0)[0] + "productId = " + listTest.get(0)[1]);
         model.addAttribute("listTest",listTest);
         return "/admin/report";
     }
@@ -123,7 +123,7 @@ public class ReportController {
         OrderDetail orderDetail = new OrderDetail();
         model.addAttribute("orderDetail", orderDetail);
         List<Object[]> listTest =  orderDetailRepository.repowhereyear();
-        System.out.println("id = " + listTest.get(0)[0] + "productId = " + listTest.get(0)[1]);
+//        System.out.println("id = " + listTest.get(0)[0] + "productId = " + listTest.get(0)[1]);
         model.addAttribute("listTest",listTest);
         return "/admin/report";
     }
@@ -134,7 +134,7 @@ public class ReportController {
         OrderDetail orderDetail = new OrderDetail();
         model.addAttribute("orderDetail", orderDetail);
         List<Object[]> listTest =  orderDetailRepository.repowheremonth();
-        System.out.println("id = " + listTest.get(0)[0] + "productId = " + listTest.get(0)[1]);
+//        System.out.println("id = " + listTest.get(0)[0] + "productId = " + listTest.get(0)[1]);
         model.addAttribute("listTest",listTest);
         return "/admin/report";
     }
@@ -146,7 +146,7 @@ public class ReportController {
         OrderDetail orderDetail = new OrderDetail();
         model.addAttribute("orderDetail", orderDetail);
         List<Object[]> listTest =  orderDetailRepository.repowhereQUARTER();
-        System.out.println("id = " + listTest.get(0)[0] + "productId = " + listTest.get(0)[1]);
+//        System.out.println("id = " + listTest.get(0)[0] + "productId = " + listTest.get(0)[1]);
         model.addAttribute("listTest",listTest);
         return "/admin/report";
     }
@@ -161,7 +161,7 @@ public class ReportController {
         OrderDetail orderDetail = new OrderDetail();
         model.addAttribute("orderDetail", orderDetail);
         List<Object[]> listTest =  orderDetailRepository.reportCustommer();
-        System.out.println("id = " + listTest.get(0)[0] + "productId = " + listTest.get(0)[1]);
+//        System.out.println("id = " + listTest.get(0)[0] + "productId = " + listTest.get(0)[1]);
         model.addAttribute("listTest",listTest);
         return "/admin/report";
     }
