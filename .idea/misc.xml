@@ -10,7 +10,11 @@
       </list>
     </option>
   </component>
+<<<<<<< HEAD
   <component name="ProjectRootManager" version="2" languageLevel="JDK_1_8" project-jdk-name="1.8" project-jdk-type="JavaSDK">
+=======
+  <component name="ProjectRootManager">
+>>>>>>> 32c996611dfee5b28bdf084ba19aa153c0151f4e
     <output url="file://$PROJECT_DIR$/classes" />
   </component>
 </project>
