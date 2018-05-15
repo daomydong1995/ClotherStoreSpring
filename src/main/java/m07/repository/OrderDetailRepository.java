@@ -24,7 +24,7 @@ public interface OrderDetailRepository extends JpaRepository<OrderDetail, Intege
             "Min(o.total_price) as min  , \n" +
             "max(o.total_price) as max \n" +
             "FROM orderdetails o\n" +
-            "INNER JOIN products p ON o.productId = p.id\n" +
+            "INNER JOIN products p ON o.idProduct = p.idProduct\n" +
             "GROUP BY p.name;", nativeQuery = true)
 
     public List<Object[]> repo();
@@ -38,8 +38,8 @@ public interface OrderDetailRepository extends JpaRepository<OrderDetail, Intege
             "Min(o.total_price) as min  , \n" +
             "max(o.total_price) as max \n" +
             "FROM orderdetails o\n" +
-            "INNER JOIN products p ON o.productId = p.id\n" +
-            "INNER JOIN categories c ON p.categoryId = c.id\n" +
+            "INNER JOIN products p ON o.idProduct = p.idProduct\n" +
+            "INNER JOIN categories c ON p.idCategory = c.idCategory\n" +
             "GROUP BY c.name;\n", nativeQuery = true)
 
     public List<Object[]> repowherecategory();
@@ -53,8 +53,8 @@ public interface OrderDetailRepository extends JpaRepository<OrderDetail, Intege
             "Min(o.total_price) as min  , \n" +
             "max(o.total_price) as max \n" +
             "FROM orderdetails o\n" +
-            "INNER JOIN products p ON o.productId = p.id\n" +
-            "INNER JOIN suppliers s ON p.supplierId = s.id\n" +
+            "INNER JOIN products p ON o.idProduct = p.idProduct\n" +
+            "INNER JOIN suppliers s ON p.idSupplier = s.idSupplier\n" +
             "GROUP BY s.name;\n", nativeQuery = true)
 
     public List<Object[]> repowheresuppliers();
@@ -69,8 +69,8 @@ public interface OrderDetailRepository extends JpaRepository<OrderDetail, Intege
             "            Min(o.total_price) as min, \n" +
             "            max(o.total_price) as max \n" +
             "            FROM orderdetails o\n" +
-            "            INNER JOIN orders p ON o.orderId = p.id\n" +
-            "            INNER JOIN customers c ON p.customerId = c.id\n" +
+            "            INNER JOIN orders p ON o.idOrder = p.idOrder\n" +
+            "            INNER JOIN customers c ON p.id = c.id\n" +
             "            GROUP BY c.id;", nativeQuery = true)
 
     public List<Object[]> reportCustommer();
@@ -84,7 +84,7 @@ public interface OrderDetailRepository extends JpaRepository<OrderDetail, Intege
             "Min(o.total_price) as min  , \n" +
             "max(o.total_price) as max \n" +
             "FROM orderdetails o\n" +
-            "INNER JOIN orders od ON o.orderId =od.id\n" +
+            "INNER JOIN orders od ON o.idOrder =od.idOrder\n" +
             "GROUP BY YEAR(od.orderDate);\n", nativeQuery = true)
 
     public List<Object[]> repowhereyear();
@@ -98,7 +98,7 @@ public interface OrderDetailRepository extends JpaRepository<OrderDetail, Intege
             "Min(o.total_price) as min  , \n" +
             "max(o.total_price) as max \n" +
             "FROM orderdetails o\n" +
-            "INNER JOIN orders od ON o.orderId =od.id\n" +
+            "INNER JOIN orders od ON o.idOrder = od.idOrder\n" +
             "GROUP BY month(od.orderDate);", nativeQuery = true)
 
     public List<Object[]> repowheremonth();
@@ -111,7 +111,7 @@ public interface OrderDetailRepository extends JpaRepository<OrderDetail, Intege
             "\tMin(o.total_price) as min  , \n" +
             "\tmax(o.total_price) as max \n" +
             "\tFROM orderdetails o\n" +
-            "\tINNER JOIN orders od ON o.orderId =od.id\n" +
+            "\tINNER JOIN orders od ON o.idOrder =od.idOrder\n" +
             "\tGROUP By QUARTER(od.orderDate);", nativeQuery = true)
 
     public List<Object[]> repowhereQUARTER();
@@ -119,54 +119,54 @@ public interface OrderDetailRepository extends JpaRepository<OrderDetail, Intege
 
 
     // thong ke san đã ,mua theo id customer
-    @Query(value = "SELECT DISTINCT productId , p.customerId , pr.name , pr.image , pr.unitBrief \n" +
+    @Query(value = "SELECT DISTINCT idProduct , p.id , pr.name , pr.image , pr.unitBrief \n" +
             "FROM orderdetails o\n" +
-            "INNER JOIN orders p ON o.orderId = p.id\n" +
-            "INNER JOIN products pr ON o.productId = pr.id\n" +
-            "WHERE p.customerId = ?", nativeQuery = true)
+            "INNER JOIN orders p ON o.idOrder = p.idOrder\n" +
+            "INNER JOIN products pr ON o.idProduct = pr.idProduct\n" +
+            "WHERE p.id = ?", nativeQuery = true)
 
-    public List<Object[]> productwherecustomer(String customerId);
+    public List<Object[]> productwherecustomer(String id);
 
 
 
 
     //Tìm kiểm don dat hang
-    @Query(value = "select *from orderdetails where orderId = ?", nativeQuery = true)
+    @Query(value = "select *from orderdetails where idOrder = ?", nativeQuery = true)
     public List<OrderDetail> searchOrder(int id);
 
 
 
     //Tìm kiểm sản phẩm
-    @Query(value = "SELECT  productId, SUM(quantity) as quantity\n" +
+    @Query(value = "SELECT  idProduct, SUM(quantity) as quantity\n" +
             "FROM orderdetails \n" +
-            "group by productId\n" +
+            "group by idProduct\n" +
             "order by quantity desc", nativeQuery = true)
     public List<OrderDetail> sanphamdathang();
 
 
     //Tìm kiểm sản phẩm
-    @Query(value = "SELECT  p.name ,  p.image, o.productId, SUM(o.quantity) as quantity , p.unitPrice\n" +
+    @Query(value = "SELECT  p.name ,  p.image, o.idProduct, SUM(o.quantity) as quantity , p.unitPrice\n" +
             "FROM orderdetails o\n" +
-            " INNER JOIN products p ON o.productId = p.id\n" +
-            "group by productId\n" +
+            " INNER JOIN products p ON o.idProduct = p.idProduct\n" +
+            "group by idProduct\n" +
             "order by quantity desc\n" +
             "limit 4", nativeQuery = true)
     public List<Object[]> topdathangnhieu();
 
 
     //Thông báo khi đặt h
-    @Query(value = "select * from orderdetails where id  order by id desc limit 5", nativeQuery = true)
+    @Query(value = "select * from orderdetails where idOrderDetails  order by idOrderDetails desc limit 5", nativeQuery = true)
     public List<OrderDetail> thongbaodathang();
 
 
     //List Sản phẩm by nhà cung cấp
-    @Query(value = "select * from orderdetails where id  = ? ", nativeQuery = true)
+    @Query(value = "select * from orderdetails where idOrderDetails  = ? ", nativeQuery = true)
     public List<OrderDetail> lisorderby (int id);
 
 
     /// list order ở bảng report
 
-    @Query(value = "select *from orderdetails ORDER BY id desc\n ", nativeQuery = true)
+    @Query(value = "select *from orderdetails ORDER BY idOrderDetails desc\n ", nativeQuery = true)
     public List<OrderDetail> lisorderbydesc ();
 
 

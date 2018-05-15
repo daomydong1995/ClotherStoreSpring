@@ -4,24 +4,16 @@ import java.io.Serializable;
 import java.util.Collection;
 import java.util.Date;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
-import javax.persistence.Table;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
+import javax.persistence.*;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
 @Entity
-@Table(name="Products")
+@Table(name="products")
 public class Product implements Serializable {
 	@Id
-	@GeneratedValue
-	Integer id;
+	@GeneratedValue()
+	Integer idProduct;
 	String name;
 	String unitBrief;
 	Double unitPrice;
@@ -31,7 +23,6 @@ public class Product implements Serializable {
 	@DateTimeFormat(style = "dd/mm/yyyy")
 	Date productDate;
 	String description;
-	//Integer categoryId;
 	//String supplierId;
 	Integer quantity;
 	Double discount;
@@ -47,11 +38,11 @@ public class Product implements Serializable {
 	}
 
 	@ManyToOne
-	@JoinColumn(name="categoryId")
+	@JoinColumn(name="idCategory")
 	Category category;
 	
 	@ManyToOne
-	@JoinColumn(name="supplierId")
+	@JoinColumn(name="idSupplier")
 	Supplier supplier;
 	
 	@OneToMany(mappedBy="product")
@@ -62,7 +53,7 @@ public class Product implements Serializable {
 	}
 
 	public Product(Integer id, String name, String unitBrief, Double unitPrice, String image, Date productDate, String description, Integer quantity, Double discount, Category category, Supplier supplier, Collection<OrderDetail> orderDetails) {
-		this.id = id;
+		this.idProduct = id;
 		this.name = name;
 		this.unitBrief = unitBrief;
 		this.unitPrice = unitPrice;
@@ -76,12 +67,12 @@ public class Product implements Serializable {
 		this.orderDetails = orderDetails;
 	}
 
-	public Integer getId() {
-		return id;
+	public Integer getIdProduct() {
+		return idProduct;
 	}
 
-	public void setId(Integer id) {
-		this.id = id;
+	public void setIdProduct(Integer idProduct) {
+		this.idProduct = idProduct;
 	}
 
 	public String getName() {

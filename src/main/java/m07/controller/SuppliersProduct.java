@@ -33,7 +33,7 @@ public class SuppliersProduct {
     public String addproduct(Model model) {
         Supplier supplier = new Supplier();
         model.addAttribute("supplier", supplier);
-        return "admin/addsuppliers";
+        return "/admin/addsuppliers";
     }
 
 
@@ -72,7 +72,7 @@ public class SuppliersProduct {
     public String editSupper(@RequestParam("id") int id,
                              ModelMap model) {
         model.addAttribute("supplier1", suppliersRepository.findOne(id));
-        return "admin/editsuppliers";
+        return "/admin/editsuppliers";
     }
 
 
@@ -98,12 +98,12 @@ public class SuppliersProduct {
         Supplier cs = suppliersRepository.save(supplier);
         if (null != cs) {
             model.addAttribute("message", "Update success");
-            model.addAttribute("category", suppliersRepository.findOne(cs.getId()));
+            model.addAttribute("category", suppliersRepository.findOne(cs.getIdSupplier()));
         } else {
             model.addAttribute("message", "Update failure");
             model.addAttribute("supplier", supplier);
         }
-        return "admin/tablelist";
+        return "/admin/tablelist";
     }
 
     ///delete Category

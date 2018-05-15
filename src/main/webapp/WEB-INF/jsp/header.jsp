@@ -50,7 +50,7 @@
       <ul>
         <c:if test="${id == null}">
           <li><a href="/registered"><i class="fa fa fa-pencil-square-o" aria-hidden="true"></i> <spring:message code="create" text="default text"/></a></li>
-          <li><a href="#" id="signin" data-toggle="modal" data-target="#myModal"><i class="fa fa-unlock-alt" aria-hidden="true"></i> <spring:message code="login" text="default text"/></a></li>
+          <li><a href="/login" ><i class="fa fa-unlock-alt" aria-hidden="true"></i> <spring:message code="login" text="default text"/></a></li>
         </c:if>
         <c:if test="${id != null}">
           <a href="" class="dropdown-toggle" data-toggle="dropdown">
@@ -85,7 +85,7 @@
       </ul>
     </div>
     <div class="w3ls_logo_products_left">
-      <h1><a href="/">Yumi Shop</a></h1>
+      <h1><a href="/">HOT TRENDING</a></h1>
     </div>
     <div class="w3l_search">
       <form action="/header" method="post">
@@ -136,7 +136,7 @@
                     <ul class="multi-column-dropdown">
 
                       <li>
-                        <a href="productbycategory?categoryId=${categoryList.id}">${categoryList.name}</a>
+                        <a href="productbycategory?idCategory=${categoryList.idCategory}">${categoryList.name}</a>
                       </li>
 
                     </ul>
@@ -164,7 +164,7 @@
                     <ul class="multi-column-dropdown">
 
                       <li>
-                        <a href="productbysupplier?supplierId=${supplierList.id}">${supplierList.name}</a>
+                        <a href="productbysupplier?idSupplier=${supplierList.idSupplier}">${supplierList.name}</a>
                       </li>
 
                     </ul>
@@ -188,23 +188,6 @@
       </div>
     </nav>
   </div>
-</div>
-<div id="myModal"  class="modal fade" tabindex="-1" role="dialog">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title">This is Modal</h4>
-      </div>
-      <div class="modal-body">
-        <p>Modal body</p>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
-      </div>
-    </div><!-- /.modal-content -->
-  </div><!-- /.modal-dialog -->
 </div>
 </body>
 </html>

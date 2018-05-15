@@ -22,9 +22,8 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 //    super.configure(auth);
     auth.jdbcAuthentication().dataSource(dataSource)
         .usersByUsernameQuery("select id,password, enabled from customers where id = ?")
-        .authoritiesByUsernameQuery("select customerId, role from role where customerId=?");
+        .authoritiesByUsernameQuery("select id, role from role where id=?");
   }
-
   @Override
   protected void configure(HttpSecurity http) throws Exception {
 //    super.configure(http);

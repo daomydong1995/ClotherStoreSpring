@@ -94,7 +94,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                                 <input type="hidden" name="cancel_return" value=" ">
 
 
-                               <tr> <a href="/addToCart?id=${product.id}" >
+                               <tr> <a href="/addToCart?id=${product.idProduct}" >
                                    <img src="/resources/images/cart.svg"  width="100" height="100" alt=" " class="img-responsive" /></a></tr>
                             </fieldset>
                         </form>

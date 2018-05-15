@@ -43,7 +43,7 @@ public class ProductController {
     public String addproduct(Model model) {
         Product product = new Product();
         model.addAttribute("product", product);
-        return "admin/addproduct";
+        return "/admin/addproduct";
     }
 
 
@@ -96,7 +96,7 @@ public class ProductController {
     public String editSupper(@RequestParam("id") int id,
                              ModelMap model) {
         model.addAttribute("product1", productRepository.findOne(id));
-        return "admin/editproduct";
+        return "/admin/editproduct";
     }
 
     // product by category
@@ -108,8 +108,6 @@ public class ProductController {
 
 
         String path = httpServletRequest.getSession().getServletContext().getRealPath("/") + "resources/uploads/";
-
-
         try {
             FileUtils.forceMkdir(new File(path));
             File upload = new File(path + file.getOriginalFilename());
@@ -123,12 +121,12 @@ public class ProductController {
         Product cs = productRepository.save(product);
         if (null != cs) {
             model.addAttribute("message", "Update success");
-            model.addAttribute("product", productRepository.findOne(cs.getId()));
+            model.addAttribute("product", productRepository.findOne(cs.getIdProduct()));
         } else {
             model.addAttribute("message", "Update failure");
             model.addAttribute("product", product);
         }
-        return "admin/listproduct";
+        return "/admin/listproduct";
     }
 
 

@@ -20,10 +20,11 @@
         <div class="content">
             <div class="author">
                 <a href="#">
-                    <img class="avatar border-gray" src="/resources/assets/img/faces/face-3.jpg" alt="..."/>
+                    <img class="avatar border-gray" src="/resources/assets/img/faces/dong.jpg"
+                         alt="..."/>
 
-                    <h4 class="title">Mike Andrew<br/>
-                        <small>michael24</small>
+                    <h4 class="title">Đào Mỹ Đông<br/>
+                        <small>daomydong1995@gmail.com</small>
                     </h4>
                 </a>
             </div>

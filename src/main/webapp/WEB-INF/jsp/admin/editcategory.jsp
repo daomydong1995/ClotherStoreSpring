@@ -50,7 +50,9 @@
                         <h4 class="title">Edit Profile</h4>
                     </div>
 
-                    <form:form action="/admin/editCategory"  modelAttribute="category1" method="post">
+                    <%--@elvariable id="category1" type="m07.entity.Category"--%>
+                    <form:form action="/admin/editCategory"  modelAttribute="category1" method="post"
+                               enctype="multipart/form-data">
                     <div class="content">
 
                             <div class="row">
@@ -58,7 +60,7 @@
                                 <div class="col-md-5">
                                     <div class="form-group">
                                         <label>ID Category</label>
-                                       <form:input path="id" type="text" name="id" class="form-control"/>
+                                       <form:input path="idCategory" type="text" name="id" class="form-control" disabled="true"/>
 
                                     </div>
                                 </div>

@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="Yumi-Shop:war">
+    <output-path>$PROJECT_DIR$/target</output-path>
+    <root id="archive" name="Yumi-Shop-1.0-SNAPSHOT.war">
+      <element id="artifact" artifact-name="Yumi-Shop:war exploded" />
+    </root>
+  </artifact>
+</component>

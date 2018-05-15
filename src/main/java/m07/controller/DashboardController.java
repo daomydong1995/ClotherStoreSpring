@@ -10,6 +10,6 @@ public class DashboardController {
 
     @RequestMapping(value = "/admin/dashboard")
     public String thongke(Model model) {
-        return "admin/dashboard";
+        return "/admin/dashboard";
     }
 }

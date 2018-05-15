@@ -1,18 +1,15 @@
 package m07.entity;
 
-import org.springframework.web.multipart.commons.CommonsMultipartFile;
-
+import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Collection;
 
-import javax.persistence.*;
-
 @Entity
-@Table(name="Suppliers")
+@Table(name="suppliers")
 public class Supplier implements Serializable {
 	@Id
-	@GeneratedValue
-	Integer id;
+	@GeneratedValue()
+	Integer idSupplier;
 	String name;
 	String logo;
 	String email;
@@ -21,12 +18,12 @@ public class Supplier implements Serializable {
 	@OneToMany(mappedBy="supplier", fetch=FetchType.EAGER)
 	Collection<Product> products;
 
-	public Integer getId() {
-		return id;
+	public Integer getIdSupplier() {
+		return idSupplier;
 	}
 
-	public void setId(Integer id) {
-		this.id = id;
+	public void setIdSupplier(Integer idSupplier) {
+		this.idSupplier = idSupplier;
 	}
 
 	public String getName() {

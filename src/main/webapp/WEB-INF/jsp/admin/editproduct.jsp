@@ -49,12 +49,13 @@
                     </div>
                     <div class="content">
                         ${message}
+                            <%--@elvariable id="product1" type="m07.entity.Product"--%>
                             <form:form action="/admin/editproduct" method="post" modelAttribute="product1" enctype="multipart/form-data">
                             <div class="row">
                                 <div class="col-md-5">
                                     <div class="form-group">
                                         <label>Mã hàng hóa</label>
-                                        <form:input path="id" class="form-control" name="id"></form:input>
+                                        <form:input  path="idProduct" class="form-control" name="id" disabled="true"></form:input>
                                     </div>
                                 </div>
                                 <div class="col-md-3">
@@ -105,7 +106,7 @@
                                     <div class="form-group">
                                         <label>Nhà Cung Cấp</label>
                                         <form:select items="${supplierList}" itemLabel="name"
-                                                     itemValue="id" path="supplier.id" class="form-control">
+                                                     itemValue="idSupplier" path="supplier.idSupplier" class="form-control">
 
                                         </form:select>
 
@@ -116,7 +117,7 @@
                                     <div class="form-group">
                                         <label>Loại</label>
                                         <form:select items="${categoryList}" itemLabel="name"
-                                                     itemValue="id" path="category.id" class="form-control">
+                                                     itemValue="idCategory" path="category.idCategory" class="form-control">
 
                                         </form:select>
 
@@ -165,11 +166,11 @@
                     <div class="content">
                         <div class="author">
                             <a href="#">
-                                <img class="avatar border-gray" src="/resources/assets/img/faces/admintu.jpg"
+                                <img class="avatar border-gray" src="/resources/assets/img/faces/dong.jpg"
                                      alt="..."/>
 
-                                <h4 class="title">Mike Andrew<br/>
-                                    <small>michael24</small>
+                                <h4 class="title">Đào Mỹ Đông<br/>
+                                    <small>daomydong1995@gmail.com</small>
                                 </h4>
                             </a>
                         </div>

@@ -88,7 +88,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                     <ul>
 
                         <c:forEach items="${categoryList}" var="categoryList">
-                            <li><a href="productbycategory?categoryId=${categoryList.id}"><i class="fa fa-arrow-right"
+                            <li><a href="productbycategory?idCategory=${categoryList.idCategory}"><i class="fa fa-arrow-right"
                                                            aria-hidden="true"></i>${categoryList.name}</a></li>
 
                         </c:forEach>
@@ -98,7 +98,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                     </li>
                     <ul>
                         <c:forEach items="${supplierList}" var="supplierList">
-                        <li><a href="productbysupplier?supplierId=${supplierList.id}"><i class="fa fa-arrow-right" aria-hidden="true"></i>${supplierList.name}</a>
+                        <li><a href="productbysupplier?idSupplier=${supplierList.idSupplier}"><i class="fa fa-arrow-right" aria-hidden="true"></i>${supplierList.name}</a>
                         </li>
                         </c:forEach>
 

@@ -9,11 +9,11 @@ import javax.persistence.*;
 import org.springframework.format.annotation.DateTimeFormat;
 
 @Entity
-@Table(name = "Orders")
+@Table(name = "orders")
 public class Order implements Serializable {
   @Id
-  @GeneratedValue
-  Integer id;
+  @GeneratedValue()
+  Integer idOrder;
   //String customerId;
   @DateTimeFormat(style = "dd/mm/yyyy")
   @Temporal(TemporalType.DATE)
@@ -37,18 +37,18 @@ public class Order implements Serializable {
   }
 
   @ManyToOne
-  @JoinColumn(name = "customerId")
+  @JoinColumn(name = "id")
   Customer customer;
 
-  @OneToMany(mappedBy = "order")
+  @OneToMany(mappedBy = "order" , fetch=FetchType.EAGER)
   Collection<OrderDetail> orderDetails;
 
-  public Integer getId() {
-    return id;
+  public Integer getIdOrder() {
+    return idOrder;
   }
 
-  public void setId(Integer id) {
-    this.id = id;
+  public void setIdOrder(Integer idOder) {
+    this.idOrder = idOder;
   }
 
   public Date getOrderDate() {

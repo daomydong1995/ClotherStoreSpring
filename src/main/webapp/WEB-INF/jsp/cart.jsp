@@ -58,7 +58,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
                     <c:forEach items="${carts}" var="cart">
                         <tr class="rem1">
-                            <td class="invert">${cart.product.id}</td>
+                            <td class="invert">${cart.product.idProduct}</td>
                             <td class="invert-image"><a href="single.html"><img
                                     src="/resources/images/${cart.product.image}" alt=" " class="img-responsive"/></a>
                             </td>

@@ -38,7 +38,7 @@ public class AdminController {
   @RequestMapping(value = "/user")
   public String admin(Model model) {
 
-    return "admin/user";
+    return "/admin/user";
   }
 
 
@@ -46,14 +46,14 @@ public class AdminController {
   @RequestMapping(value = "/listproduct")
   public String listProduct(Model model) {
 
-    return "admin/listproduct";
+    return "/admin/listproduct";
   }
 
 
   @RequestMapping(value = "/tablelist")
   public String tables(Model model) {
 
-    return "admin/tablelist";
+    return "/admin/tablelist";
   }
 
 
@@ -62,7 +62,7 @@ public class AdminController {
   public String checkOut(Model model) {
     Category category = new Category();
     model.addAttribute("category", category);
-    return "admin/addcategory";
+    return "/admin/addcategory";
   }
 
 
@@ -81,7 +81,7 @@ public class AdminController {
 
       model.addAttribute("message", "Chúc mừng");
     }
-    return "admin/tablelist";
+    return "/admin/tablelist";
   }
 
 
@@ -112,7 +112,7 @@ public class AdminController {
   public String editCategory(@RequestParam("id") int id,
                              ModelMap model) {
     model.addAttribute("category1", categoryRepository.findOne(id));
-    return "admin/editcategory";
+    return "/admin/editcategory";
   }
 
   @RequestMapping(value = "/editCategory", method = RequestMethod.POST)
@@ -120,12 +120,12 @@ public class AdminController {
     Category cs = categoryRepository.save(category);
     if (null != cs) {
       model.addAttribute("message", "Update success");
-      model.addAttribute("category", categoryRepository.findOne(cs.getId()));
+      model.addAttribute("category", categoryRepository.findOne(cs.getIdCategory()));
     } else {
       model.addAttribute("message", "Update failure");
       model.addAttribute("category", category);
     }
-    return "admin/tablelist";
+    return "/admin/tablelist";
   }
 
   /// delete Category

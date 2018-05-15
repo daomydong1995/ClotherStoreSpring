@@ -22,7 +22,7 @@
 
                 <div class="brands-w3l">
 
-                    <p><a href="productbysupplier?supplierId=${su.id}"><img src="/resources/uploads/${su.logo}" class="img-responsive" alt="#" /></a></p>
+                    <p><a href="productbysupplier?idSupplier=${su.idSupplier}"><img src="/resources/uploads/${su.logo}" class="img-responsive" alt="#" /></a></p>
                 </div>
 
             </div>

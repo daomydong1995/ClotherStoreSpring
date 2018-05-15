@@ -7,12 +7,11 @@ import javax.persistence.*;
 public class Role {
 
     @Id
-    @GeneratedValue
-    Integer id;
+    @GeneratedValue()
+    Integer idRole;
     String role;
-
     @ManyToOne
-    @JoinColumn(name="customerId")
+    @JoinColumn(name="id")
     Customer customer;
 
     public void setRole(String role) {
@@ -27,12 +26,12 @@ public class Role {
         this.customer = customer;
     }
 
-    public Integer getId() {
-        return id;
+    public Integer getIdRole() {
+        return idRole;
     }
 
-    public void setId(Integer id) {
-        this.id = id;
+    public void setIdRole(Integer idRole) {
+        this.idRole = idRole;
     }
 
     public String getRole() {

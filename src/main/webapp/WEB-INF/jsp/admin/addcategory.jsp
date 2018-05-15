@@ -49,10 +49,10 @@
                     <div class="header">
                         <h4 class="title">Thêm Danh Mục Sản Phẩm</h4>
                     </div>
-
-
                     <div class="content">
-                        <form:form action="/admin/addcategory" method="post" modelAttribute="category">
+                        <%--@elvariable id="category" type="m07.entity.Category"--%>
+                        <form:form action="/admin/addcategory" method="post" modelAttribute="category"
+                                   enctype="multipart/form-data">
 
                             <div class="row">
 

@@ -49,12 +49,13 @@
                     </div>
                     <div class="content">
                         ${message}
+                        <%--@elvariable id="orderDetails" type="m07.entity.OrderDetail"--%>
                         <form:form action="/admin/editorder" method="post" modelAttribute="orderDetails">
                             <div class="row">
                                 <div class="col-md-5">
                                     <div class="form-group">
                                         <label>Mã hàng hóa</label>
-                                        <form:input path="id" class="form-control" name="id"></form:input>
+                                        <form:input path="idOrderDetails" class="form-control" name="id" disabled="true"></form:input>
                                     </div>
                                 </div>
                                 <div class="col-md-3">
@@ -95,7 +96,7 @@
                                     <div class="form-group">
                                         <label>
                                             Mã Oder </label>
-                                        <form:input type="text" path="order.id" class="form-control" required="true"></form:input>
+                                        <form:input type="text" path="order.idOrder" class="form-control" required="true"></form:input>
                                     </div>
                                 </div>
                             </div>
@@ -104,7 +105,7 @@
                                 <div class="col-md-4">
                                     <div class="form-group">
                                         <label>Product</label>
-                                        <form:input type="text" path="product.id" class="form-control" required="true"></form:input>
+                                        <form:input type="text" path="product.idProduct" class="form-control" required="true"></form:input>
 
 
                                     </div>
@@ -145,11 +146,11 @@
                     <div class="content">
                         <div class="author">
                             <a href="#">
-                                <img class="avatar border-gray" src="/resources/assets/img/faces/admintu.jpg"
+                                <img class="avatar border-gray" src="/resources/assets/img/faces/dong.jpg"
                                      alt="..."/>
 
-                                <h4 class="title">Mike Andrew<br/>
-                                    <small>michael24</small>
+                                <h4 class="title">Đào Mỹ Đông<br/>
+                                    <small>daomydong1995@gmail.com</small>
                                 </h4>
                             </a>
                         </div>

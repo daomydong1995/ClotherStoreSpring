@@ -62,7 +62,7 @@ public class OrderController extends  BaseController {
         }
 
         List<Object[]> listTestpro =  orderDetailRepository.productwherecustomer(customerId);
-//        System.out.println("id = " + listTestpro.get(0)[0] + "productId = " + listTestpro.get(0)[1]);
+//        System.out.println("id = " + listTestpro.get(0)[0] + "idProduct = " + listTestpro.get(0)[1]);
         model.addAttribute("productbycustomer",listTestpro);
         return "productbycustome";
     }

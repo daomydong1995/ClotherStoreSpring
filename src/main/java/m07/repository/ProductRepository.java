@@ -20,16 +20,16 @@ public interface ProductRepository  extends JpaRepository<Product, Integer> {
     public List<Product> listproduct6 ();
 
     //List Sản phẩm by danh mục
-    @Query(value = "select  *from products where categoryId = ? ", nativeQuery = true)
-    public List<Product> listproductBycategory (int categoryId);
+    @Query(value = "select  *from products where idCategory = ? ", nativeQuery = true)
+    public List<Product> listproductBycategory (int idCategory);
 
     //List Sản phẩm by nhà cung cấp
-    @Query(value = "select  *from products where supplierId = ? ", nativeQuery = true)
-    public List<Product> listproductBysupper (int supplierId);
+    @Query(value = "select  *from products where idSupplier = ? ", nativeQuery = true)
+    public List<Product> listproductBysupper (int idSupplier);
 
 
 
-    @Query(value = "select *from products ORDER BY id desc", nativeQuery = true)
+    @Query(value = "select *from products ORDER BY idProduct desc", nativeQuery = true)
     public List<Product> listproductdesc ();
 
 

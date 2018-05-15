@@ -35,9 +35,9 @@ public class CartController extends BaseController   {
             method = RequestMethod.GET)
     public String addToCart(@RequestParam(value = "id") String id,
                             HttpServletRequest request){
-        int productId = Integer.valueOf(id);
+        int idProduct = Integer.valueOf(id);
         Product product =
-                productRepository.findOne(productId);
+                productRepository.findOne(idProduct);
         HttpSession session = request.getSession();
         List<CartItem> carts =
                 (List<CartItem>) session.getAttribute("carts");
@@ -45,7 +45,7 @@ public class CartController extends BaseController   {
             boolean isExistingId = false;
             for(CartItem item: carts) {
                 // da co 1 product ID trong cart -> tang quantity len 1
-                if (item.getProduct().getId() == productId) {
+                if (item.getProduct().getIdProduct() == idProduct) {
                     item.setQuantity(item.getQuantity() + 1);
                     isExistingId = true;
                     break;
@@ -138,13 +138,13 @@ public class CartController extends BaseController   {
         Date date = new Date();
         order.setOrderDate(date);
         orderRepository.save(order);
-        order.getId();
-        System.out.println(order.getId());
+        order.getIdOrder();
+        System.out.println(order.getIdOrder());
 
         session.removeAttribute("carts");
 //        session.setAttribute("carts", null);
 //        session.invalidate();
-        model.addAttribute("orderId",order.getId());
+        model.addAttribute("orderId",order.getIdOrder());
         return "checkout_success";
     }
 

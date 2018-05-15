@@ -3,13 +3,10 @@ package m07.entity;
 import java.io.Serializable;
 import java.util.Collection;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.OneToMany;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @Entity
-@Table(name="Customers")
+@Table(name="customers")
 public class Customer implements Serializable {
 	@Id
 	String id;
@@ -19,10 +16,10 @@ public class Customer implements Serializable {
 	String photo = "";
 	Boolean enabled;
 	
-	@OneToMany(mappedBy="customer")
+	@OneToMany(mappedBy="customer", fetch=FetchType.EAGER)
 	Collection<Order> orders;
 
-	@OneToMany(mappedBy="customer")
+	@OneToMany(mappedBy="customer", fetch= FetchType.EAGER)
 	Collection<Role> roles;
 
 	public Collection<Role> getRoles() {

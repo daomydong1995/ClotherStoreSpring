@@ -1,18 +1,17 @@
 package m07.entity;
 
+import javax.persistence.*;
 import java.io.Serializable;
 
-import javax.persistence.*;
-
 @Entity
-@Table(name="OrderDetails")
+@Table(name="orderDetails")
 public class OrderDetail implements Serializable {
 
 	@Id
-	@GeneratedValue
-	Integer id;
+	@GeneratedValue()
+	Integer idOrderDetails;
 	//Integer orderId;
-	//Integer productId;
+	//Integer idProduct;
 	Double unitPrice;
 	Integer quantity;
 	Double discount;
@@ -37,20 +36,20 @@ public class OrderDetail implements Serializable {
 	}
 
 	@ManyToOne
-	@JoinColumn(name="orderId")
+	@JoinColumn(name="idOrder")
 	Order order;
 	
 	@ManyToOne
-	@JoinColumn(name="productId")
+	@JoinColumn(name="idProduct")
 	Product product;
 
 
-	public Integer getId() {
-		return id;
+	public Integer getIdOrderDetails() {
+		return idOrderDetails;
 	}
 
-	public void setId(Integer id) {
-		this.id = id;
+	public void setIdOrderDetails(Integer idOrderDetails) {
+		this.idOrderDetails = idOrderDetails;
 	}
 
 	public Double getUnitPrice() {

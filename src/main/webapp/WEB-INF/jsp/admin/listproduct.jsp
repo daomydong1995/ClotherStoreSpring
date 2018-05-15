@@ -65,15 +65,15 @@
                             <tbody>
                             <c:forEach items="${productList}" var="productList">
                                 <tr>
-                                    <td>${productList.id}</td>
+                                    <td>${productList.idProduct}</td>
                                     <td>${productList.name}</td>
                                     <td>${productList.quantity}</td>
                                     <td>${productList.unitPrice}</td>
                                     <td>${productList.discount}</td>
-                                    <td><a href="/admin/editproduct?id=${productList.id}"><img src="/resources/assets/img/icon/edit.svg " height="20" width="20" ></a></td>
+                                    <td><a href="/admin/editproduct?id=${productList.idProduct}"><img src="/resources/assets/img/icon/edit.svg " height="20" width="20" ></a></td>
                                         <%--<a href="/admin/editproduct?id=${productList.id}"></a></td>--%>
 
-                                    <td><a href="/deletepro/${productList.id}"><img src="/resources/assets/img/icon/delete.svg " height="20"
+                                    <td><a href="/deletepro/${productList.idProduct}"><img src="/resources/assets/img/icon/delete.svg " height="20"
                                              width="20"></a></td>
                                 </tr>
                             </c:forEach>

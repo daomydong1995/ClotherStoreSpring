@@ -67,7 +67,7 @@ public class HomeController extends BaseController {
         OrderDetail orderDetail = new OrderDetail();
         model.addAttribute("orderDetail", orderDetail);
         List<Object[]> listTest1 =  orderDetailRepository.topdathangnhieu();
-        System.out.println("id = " + listTest1.get(0)[0] + "productId = " + listTest1.get(0)[1]);
+//        System.out.println("id = " + listTest1.get(0)[0] + "idProduct = " + listTest1.get(0)[1]);
         model.addAttribute("listTest1",listTest1);
         return "producttop";
     }
@@ -75,10 +75,10 @@ public class HomeController extends BaseController {
 
     @RequestMapping(value = "detail")
     public String showProductDetail(
-            @RequestParam("id") String id,
+            @RequestParam("idProduct") String idProduct,
             Model model) {
         Product product =
-                productRepository.findOne(Integer.valueOf(id));
+                productRepository.findOne(Integer.valueOf(idProduct));
         model.addAttribute("product", product);
         return "detail";
     }
@@ -96,9 +96,9 @@ public class HomeController extends BaseController {
 
     //product by category
     @RequestMapping(value = "productbycategory")
-    public String showproductbyid(Model model, @RequestParam("categoryId") int categoryId) {
+    public String showproductbyid(Model model, @RequestParam("idCategory") int idCategory) {
         List<Product> productList =
-                (List<Product>) productRepository.listproductBycategory(categoryId);
+                (List<Product>) productRepository.listproductBycategory(idCategory);
         model.addAttribute("productList", productList);
         return "product";
     }
@@ -106,9 +106,10 @@ public class HomeController extends BaseController {
 
     // product by supline
     @RequestMapping(value = "productbysupplier")
-    public String showproductbysup(Model model, @RequestParam("supplierId") int supplierId) {
+    public String showproductbysup(Model model, @RequestParam("idSupplier") int idSupplier) {
         List<Product> productList =
-                (List<Product>) productRepository.listproductBysupper(supplierId);
+                (List<Product>) productRepository.listproductBysupper(idSupplier);
+
         model.addAttribute("productList", productList);
         return "product";
     }
