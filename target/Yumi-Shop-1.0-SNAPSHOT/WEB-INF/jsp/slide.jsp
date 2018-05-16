@@ -44,14 +44,14 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
         <img src="/resources/images/top.jpg" alt=""/>
         <!--Slider Description example-->
         <div class="slide-desc">
-            <h2>POND'S</h2>
-            <h3>Kem dưỡng da số 1 Việt Nam</h3>
+            <h2>XU HƯỚNG 2018</h2>
+            <h3>Mẫu thiết kế nổi </h3>
         </div>
     </li>
     <li>
         <img src="/resources/images/top2.jpg" alt=""/>
         <div class="slide-desc">
-            <h3>Ưu việt, tẩy tế bào chết, chống lão hóa da</h3>
+            <h3>Tinh tế trong từng sản phẩm</h3>
         </div>
     </li>
 </ul>

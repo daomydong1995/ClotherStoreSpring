@@ -165,7 +165,7 @@
                     <div class="content">
                         <div class="author">
                             <a href="#">
-                                <img class="avatar border-gray" src="/resources/assets/img/faces/admintu.jpg"
+                                <img class="avatar border-gray" src="/resources/assets/img/faces/dong.jpg"
                                      alt="..."/>
 
                                 <h4 class="title">Mike Andrew<br/>

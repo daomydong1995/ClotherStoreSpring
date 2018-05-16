@@ -60,7 +60,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                         <tr class="rem1">
                             <td class="invert">${cart.product.name}</td>
                             <td class="invert-image"><a href="single.html"><img
-                                    src="/resources/images/${cart.product.image}" alt=" " class="img-responsive"/></a>
+                                    src="/resources/uploads/${cart.product.image}" alt=" " class="img-responsive"/></a>
                             </td>
                             <td class="invert">
                                 <div class="quantity">

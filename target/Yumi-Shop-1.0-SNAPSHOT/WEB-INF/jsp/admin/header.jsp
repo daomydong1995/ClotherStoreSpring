@@ -10,6 +10,7 @@
 <html>
 <head>
     <title>Title</title>
+
 </head>
 <body>
 <div class="wrapper">
@@ -20,8 +21,8 @@
 
         <div class="sidebar-wrapper">
             <div class="logo">
-                <a  class="simple-text">
-                    Yumi Shop
+                <a href="/home" class="simple-text">
+                    TRENDING SHOP
                 </a>
             </div>
 

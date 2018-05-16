@@ -37,6 +37,9 @@
     <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
     <link href='http://fonts.googleapis.com/css?family=Roboto:400,700,300' rel='stylesheet' type='text/css'>
     <link href="/resources/assets/css/pe-icon-7-stroke.css" rel="stylesheet"/>
+    <script src="/resources/assets/js/jquery.twbsPagination.js" type="text/javascript"></script>
+    <script src="/resources/assets/js/jquery.3.2.1.min.js" type="text/javascript"></script>
+    <script src="/resources/assets/js/jquery.twbsPagination.js" type="text/javascript"></script>
 </head>
 <body>
 
@@ -62,24 +65,10 @@
                             <th>Action</th>
                             <th>Action</th>
                             </thead>
-                            <tbody>
-                            <c:forEach items="${productList}" var="productList">
-                                <tr>
-                                    <td>${productList.id}</td>
-                                    <td>${productList.name}</td>
-                                    <td>${productList.quantity}</td>
-                                    <td>${productList.unitPrice}</td>
-                                    <td>${productList.discount}</td>
-                                    <td><a href="/admin/editproduct?id=${productList.id}"><img src="/resources/assets/img/icon/edit.svg " height="20" width="20" ></a></td>
-                                        <%--<a href="/admin/editproduct?id=${productList.id}"></a></td>--%>
-
-                                    <td><a href="/deletepro/${productList.id}"><img src="/resources/assets/img/icon/delete.svg " height="20"
-                                             width="20"></a></td>
-                                </tr>
-                            </c:forEach>
+                            <tbody class="tbody">
                             </tbody>
                         </table>
-
+                        <ul id="pagination-demo" class="pagination-sm"></ul>
                     </div>
                 </div>
             </div>
@@ -89,7 +78,7 @@
 
 <jsp:include page="footer.jsp"></jsp:include>
 <!--   Core JS Files   -->
-<script src="/resources/assets/js/jquery.3.2.1.min.js" type="text/javascript"></script>
+
 <script src="/resources/assets/js/bootstrap.min.js" type="text/javascript"></script>
 
 <!--  Charts Plugin -->
@@ -111,7 +100,7 @@
     $(document).ready(function () {
 
         demo.initChartist();
-
+        loadData();
         $.notify({
             icon: 'pe-7s-gift',
             message: "${message}"
@@ -122,6 +111,56 @@
         });
 
     });
+    function loadData(pageIndex) {
+        if (pageIndex == null) pageIndex = 1;
+        $.ajax({
+            url: "/admin/productList",
+            type: "GET",
+            contentType: "application/json;charset=utf-8",
+            data: {pagePro: pageIndex},
+            dataType: "json",
+            success: function (result) {
+                var html = '';
+                var data = result.data;
+                $.each(data, function (key, product) {
+                    var img = '<img class="img-thumbnail" style="cursor:pointer" src="/resources/uploads/'+product.image+'" height="120px" width="50px"/>';
+                    html += '<tr>';
+                    html += '<td>' + img + '</td>'
+                    html += '<td>' + product.name + '</td>';
+                    html += '<td>' + product.quantity + '</td>';
+                    html += '<td>' + product.unitPrice + '</td>';
+                    html += '<td>' + product.discount + '</td>';
+                    html += '<td>' +
+                        ' <a  class="btn btn-primary" href="/admin/editproduct?id='+product.id+'"><img src="/resources/assets/img/icon/edit.svg " height="20" width="20" ></a>' +
+                        '</td>';
+                    html += '<td>' +
+                        '<a class="btn btn-default" href="/deletepro/'+product.id+'"><img src="/resources/assets/img/icon/delete.svg " height="20"\n' +
+                        '                width="20"></a>' +
+                        '</td>';
+                    html += '</tr>';
+                });
+                $('.tbody').html(html);
+                paging(result.total, function () {
+                    loadData();
+                })
+            },
+            error: function (errormessase) {
+                alert(errormessase.responseText);
+            }
+        });
+    }
+
+    // Phân trang
+    function paging(totalRow, callback) {
+        var totalPage = Math.ceil(totalRow / 5)
+        $('#pagination-demo').twbsPagination({
+            totalPages: totalPage,
+            visiblePages: 5,
+            onPageClick: function (event, page) {
+                loadData(page);
+            }
+        });
+    }
 </script>
 
 </body>

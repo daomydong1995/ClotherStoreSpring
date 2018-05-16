@@ -1,5 +1,6 @@
 package m07.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.springframework.web.multipart.commons.CommonsMultipartFile;
 
 import java.io.Serializable;
@@ -19,6 +20,7 @@ public class Supplier implements Serializable {
 	String phone;
 	
 	@OneToMany(mappedBy="supplier", fetch=FetchType.EAGER)
+	@JsonIgnore
 	Collection<Product> products;
 
 	public Integer getId() {

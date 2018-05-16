@@ -64,7 +64,8 @@ public interface ProductRepository  extends JpaRepository<Product, Integer> {
     @Query(value = "SELECT * FROM  products where discount = ?" , nativeQuery = true)
     public  List<Product> sale(Double discount);
 
-
+    @Query(value = "SELECT * FROM Products LIMIT ?,?",nativeQuery = true)
+    public List<Product> pageView(int index ,int limited);
 
 
 

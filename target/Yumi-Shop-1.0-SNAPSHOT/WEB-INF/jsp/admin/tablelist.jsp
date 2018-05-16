@@ -37,6 +37,8 @@
     <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
     <link href='http://fonts.googleapis.com/css?family=Roboto:400,700,300' rel='stylesheet' type='text/css'>
     <link href="/resources/assets/css/pe-icon-7-stroke.css" rel="stylesheet"/>
+    <script src="/resources/assets/js/jquery.3.2.1.min.js" type="text/javascript"></script>
+     <script src="/resources/assets/js/jquery.twbsPagination.js" type="text/javascript"></script>
 </head>
 <body>
 
@@ -62,23 +64,10 @@
                                     <th>Action</th>
                                     <th>Action</th>
                                     </thead>
-                                    <tbody>
-                                    <c:forEach items="${categoryList}" var="categoryList">
-                                        <tr>
-                                            <td>${categoryList.id}</td>
-                                            <td>${categoryList.name}</td>
-                                            <td>${categoryList.nameVN}</td>
-                                            <td>
-                                                <a href="/admin/editCategory?id=${categoryList.id}"><img src="/resources/assets/img/icon/edit.svg " height="20" width="20"></a></td>
-                                            <td><a href="/delete/${categoryList.id}"><img src="/resources/assets/img/icon/delete.svg " height="20"
-                                                                                          width="20"></a></td>
-                                        </tr>
-                                    </c:forEach>
-
+                                    <tbody class="tbodyCa">
                                     </tbody>
                                 </table>
-
-
+                                <ul id="pagination-Ca" class="pagination-sm"></ul>
                             </div>
                         </div>
                     </div>
@@ -101,29 +90,10 @@
                                     <th>Action</th>
                                     <th>Action</th>
                                     </thead>
-                                    <tbody>
-                                    <c:forEach items="${supplierList}" var="supplierList">
-                                        <tr>
-                                            <td>${supplierList.id}</td>
-                                            <td>${supplierList.email}</td>
-                                            <td><img src="/resources/uploads/${supplierList.logo}" width="100"
-                                                     height="50"/></td>
-                                            <td>${supplierList.name}</td>
-                                            <td>${supplierList.phone}</td>
-
-
-                                            <td>
-                                                <a href="/admin/editsuppliers?id=${supplierList.id}"><img src="/resources/assets/img/icon/edit.svg " height="20" width="20"></a></td>
-                                            <td><a href="/deletesup/${supplierList.id}"><img src="/resources/assets/img/icon/delete.svg " height="20"
-                                                                                             width="20"></a></td>
-
-
-                                        </tr>
-                                    </c:forEach>
-
+                                    <tbody class="tbodySup">
                                     </tbody>
                                 </table>
-
+                                <ul id="pagination-Sup" class="pagination-sm"></ul>
                             </div>
                         </div>
                     </div>
@@ -139,7 +109,6 @@
     </div>
 </div>
 <!--   Core JS Files   -->
-<script src="/resources/assets/js/jquery.3.2.1.min.js" type="text/javascript"></script>
 <script src="/resources/assets/js/bootstrap.min.js" type="text/javascript"></script>
 
 <!--  Charts Plugin -->
@@ -161,7 +130,8 @@
     $(document).ready(function () {
 
         demo.initChartist();
-
+        loadDataCa()
+        loadDataSup()
         $.notify({
             icon: 'pe-7s-gift',
             message: "${message}"
@@ -172,6 +142,102 @@
         });
 
     });
+    function loadDataCa(pageIndex) {
+        if (pageIndex == null) pageIndex = 1;
+        $.ajax({
+            url: "/admin/categoryList",
+            type: "GET",
+            contentType: "application/json;charset=utf-8",
+            data: {pageCa: pageIndex},
+            dataType: "json",
+            success: function (result) {
+                var html = '';
+                var data = result.data;
+                $.each(data, function (key, product) {
+                    html += '<tr>';
+                    html += '<td>' + product.id + '</td>';
+                    html += '<td>' + product.name + '</td>';
+                    html += '<td>' + product.nameVN + '</td>';
+                    html += '<td>' +
+                        ' <a  class="btn btn-primary" href="/admin/editCategory?id='+product.id+'"><img src="/resources/assets/img/icon/edit.svg " height="20" width="20" ></a>' +
+                        '</td>';
+                    html += '<td>' +
+                        '<a class="btn btn-default" href="/delete/'+product.id+'"><img src="/resources/assets/img/icon/delete.svg " height="20" width="20"></a>' +
+                        '</td>';
+                    html += '</tr>';
+                });
+                $('.tbodyCa').html(html);
+                pagingCa(result.total, function () {
+                    loadDataCa();
+                })
+            },
+            error: function (errormessase) {
+                alert(errormessase.responseText);
+            }
+        });
+    }
+
+    // Phân trang
+    function pagingCa(totalRow, callback) {
+        var totalPage = Math.ceil(totalRow / 5)
+        $('#pagination-Ca').twbsPagination({
+            totalPages: totalPage,
+            visiblePages: 5,
+            onPageClick: function (event, page) {
+                loadDataCa(page);
+            }
+        });
+    }
+    function loadDataSup(pageIndex) {
+        if (pageIndex == null) pageIndex = 1;
+        $.ajax({
+            url: "/admin/supplierList",
+            type: "GET",
+            contentType: "application/json;charset=utf-8",
+            data: {pageSup: pageIndex},
+            dataType: "json",
+            success: function (result) {
+                var html = '';
+                var data = result.data;
+                $.each(data, function (key, product) {
+                    var img = '<img class="img-thumbnail" style="cursor:pointer" src="/resources/uploads/'+product.logo+'" height="20" width="50"/>';
+                    html += '<tr>';
+                    html += '<td>' + product.id + '</td>';
+                    html += '<td>' + product.email + '</td>';
+                    html += '<td>' + img + '</td>';
+                    html += '<td>' + product.name + '</td>';
+                    html += '<td>' + product.phone + '</td>';
+                    html += '<td>' +
+                            ' <a  class="btn btn-primary" href="/admin/editsuppliers?id='+product.id+'"><img src="/resources/assets/img/icon/edit.svg " height="20" width="20" ></a>' +
+                            '</td>';
+                    html += '<td>' +
+                        '<a class="btn btn-default" href="/deletesup/'+product.id+'"><img src="/resources/assets/img/icon/delete.svg " height="20" width="20"></a>' +
+                        '</td>';
+                    html += '</tr>';
+                });
+                $('.tbodySup').html(html);
+                pagingSup(result.total, function () {
+                    loadDataSup();
+                })
+            },
+            error: function (errormessase) {
+                alert(errormessase.responseText);
+            }
+        });
+    }
+
+    // Phân trang
+    function pagingSup(totalRow, callback) {
+        var totalPage = Math.ceil(totalRow / 5)
+        $('#pagination-Sup').twbsPagination({
+            totalPages: totalPage,
+            visiblePages: 5,
+            onPageClick: function (event, page) {
+                loadDataSup(page);
+            }
+        });
+    }
+
 </script>
 </body>
 </html>

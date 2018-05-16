@@ -27,7 +27,7 @@
                                 <figure>
                                     <div class="snipcart-item block">
                                         <div class="snipcart-thumb">
-                                            <a href="products.html"><img title=" " alt=" " src="/resources/images/${report[1]}"></a>
+                                            <a href="products.html"><img title=" " alt=" " src="/resources/uploads/${report[1]}" height="150px" width="150px"></a>
                                             <p><a href="/detail?id=${report[2]}">${report[0]}</a></p>
                                             <div class="stars">
                                                 <i class="fa fa-star blue-star" aria-hidden="true"></i>

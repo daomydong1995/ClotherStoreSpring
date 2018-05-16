@@ -14,6 +14,7 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.springframework.format.annotation.DateTimeFormat;
 
 @Entity
@@ -48,13 +49,16 @@ public class Product implements Serializable {
 
 	@ManyToOne
 	@JoinColumn(name="categoryId")
+	@JsonIgnore
 	Category category;
 	
 	@ManyToOne
 	@JoinColumn(name="supplierId")
+	@JsonIgnore
 	Supplier supplier;
 	
 	@OneToMany(mappedBy="product")
+	@JsonIgnore
 	Collection<OrderDetail> orderDetails;
 
 

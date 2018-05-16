@@ -24,7 +24,7 @@
                     </li>
                     <li><i class="glyphicon glyphicon-envelope" aria-hidden="true"></i><a
                             href="mailto:info@example.com">Tubang24@gmail.com</a></li>
-                    <li><i class="glyphicon glyphicon-earphone" aria-hidden="true"></i>+84 976 704 644</li>
+                    <li><i class="glyphicon glyphicon-earphone" aria-hidden="true"></i>+84 988 604 425</li>
                 </ul>
             </div>
             <div class="col-md-3 w3_footer_grid">
@@ -68,7 +68,7 @@
     <div class="footer-copy">
 
         <div class="container">
-            <p>© 2017. All rights reserved | Design by <a href="http://fb.com/toilatubang/">Tunv</a></p>
+            <p>© 2017. All rights reserved | Design by <a href="https://www.facebook.com/daomydong1995">Đông</a></p>
         </div>
     </div>
 
@@ -96,6 +96,5 @@
 
 <%--///// TÍCH HỢP CHÁT--%>
 
-<script type='text/javascript'>window._sbzq||function(e){e._sbzq=[];var t=e._sbzq;t.push(["_setAccount",75413]);var n=e.location.protocol=="https:"?"https:":"http:";var r=document.createElement("script");r.type="text/javascript";r.async=true;r.src=n+"//static.subiz.com/public/js/loader.js";var i=document.getElementsByTagName("script")[0];i.parentNode.insertBefore(r,i)}(window);</script>
-</body>
+<script src="https://uhchat.net/code.php?f=121f1b"></script></body>
 </html>

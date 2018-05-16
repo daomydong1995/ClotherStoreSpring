@@ -53,7 +53,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
         <div class="agileinfo_single">
 
             <div class="col-md-4 agileinfo_single_left">
-                <img id="example" src="/resources/images/${product.image}" alt=" " class="img-responsive">
+                <img id="example" src="/resources/uploads/${product.image}" alt=" " class="img-responsive">
             </div>
             <div class="col-md-8 agileinfo_single_right">
                 <h2>${product.name}</h2>

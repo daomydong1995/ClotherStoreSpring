@@ -1,6 +1,7 @@
 package m07.controller;
 
 import m07.entity.Category;
+import m07.entity.ModelReponse;
 import m07.entity.Product;
 import m07.entity.Supplier;
 import m07.repository.CategoryRepository;
@@ -21,7 +22,7 @@ import java.util.List;
 @Controller
 @RequestMapping(value = "/admin")
 public class AdminController {
-
+  private static final int PAGE_SIZE = 5;
   @Autowired
   CategoryRepository categoryRepository;
 
@@ -52,7 +53,6 @@ public class AdminController {
 
   @RequestMapping(value = "/tablelist")
   public String tables(Model model) {
-
     return "admin/tablelist";
   }
 
@@ -86,25 +86,28 @@ public class AdminController {
 
 
   /// list category ở table list
-  @ModelAttribute("categoryList")
-  public List<Category> showCategory(Model model) {
-    List<Category> categoryList =
-        (List<Category>) categoryRepository.findAll();
-    return categoryList;
+  @RequestMapping("/categoryList")
+  public @ResponseBody
+  ModelReponse showCategory(@RequestParam("pageCa") int pageCa) {
+    List<Category> categoryList = (List<Category>) categoryRepository.findAll();
+    List<Category> pages = categoryRepository.pageView(pageCa,PAGE_SIZE);
+    return new ModelReponse(pages,categoryList.size());
   }
 
-  @ModelAttribute("supplierList")
-  public List<Supplier> supplierList(Model model) {
-    List<Supplier> supplierList =
-        (List<Supplier>) suppliersRepository.findAll();
-    return supplierList;
+  @RequestMapping("/supplierList")
+  public @ResponseBody
+  ModelReponse supplierList(@RequestParam("pageSup") int pageSup) {
+    List<Supplier> supplierList = (List<Supplier>) suppliersRepository.findAll();
+    List<Supplier> pages = suppliersRepository.pageView(pageSup,PAGE_SIZE);
+    return new ModelReponse(pages,supplierList.size());
   }
 
-  @ModelAttribute("productList")
-  public List<Product> showproduct(Model model) {
-    List<Product> productList =
-        (List<Product>) productRepository.listproductdesc();
-    return productList;
+  @RequestMapping("/productList")
+  public @ResponseBody
+  ModelReponse showproduct(@RequestParam("pagePro") int page) {
+    List<Product> productList = (List<Product>) productRepository.listproductdesc();
+    List<Product> pages = productRepository.pageView(page,PAGE_SIZE);
+    return new ModelReponse(pages,productList.size());
   }
 
   // Edit category
@@ -129,7 +132,7 @@ public class AdminController {
   }
 
   /// delete Category
-  @RequestMapping(value = "delete/{id}", method = RequestMethod.GET)
+  @RequestMapping(value = "/delete/{id}", method = RequestMethod.GET)
   public String addCourse(@PathVariable("id") int id, ModelMap model) {
     categoryRepository.delete(id);
     return "redirect:/admin/tablelist";

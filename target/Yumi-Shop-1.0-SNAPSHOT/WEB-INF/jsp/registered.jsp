@@ -59,7 +59,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
             <h5><spring:message code="Profile" text="default text"/></h5>
             <form:form action="/registered" method="post" modelAttribute="customer">
                 <form:input path="fullname" placeholder="Full name" required=" "></form:input>
-                <form:input path="photo" placeholder="Photo" required=" "></form:input>
+                <form:input path="photo" placeholder="Tuoi" required=" "></form:input>
 
 
 

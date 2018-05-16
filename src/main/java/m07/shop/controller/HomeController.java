@@ -1,8 +1,10 @@
 package m07.shop.controller;
 
 
+import m07.entity.Customer;
 import m07.entity.OrderDetail;
 import m07.entity.Product;
+import m07.repository.CustomersRepository;
 import m07.repository.OrderDetailRepository;
 import m07.repository.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,18 +35,21 @@ public class HomeController extends BaseController {
 
     @Autowired
     OrderDetailRepository orderDetailRepository;
+    @Autowired
+    CustomersRepository customersRepository;
 
     private static final int dataPerPage = 6; // moi trang co 7 data
     private static int totalPages = 0;
 
-    @RequestMapping(method = RequestMethod.GET)
+    @RequestMapping(value = {"","home"},method = RequestMethod.GET)
     public String showProduct(Model model, HttpServletRequest request) {
         HttpSession httpSession = request.getSession();
         Object s = httpSession.getAttribute("SPRING_SECURITY_CONTEXT");
         if (s != null) {
             SecurityContextImpl context = (SecurityContextImpl) s;
             String loggedInUser = context.getAuthentication().getName();
-            model.addAttribute("id", loggedInUser);
+            Customer customer = customersRepository.findId(loggedInUser);
+            model.addAttribute("id", customer.getFullname());
         }
         return "home";
     }

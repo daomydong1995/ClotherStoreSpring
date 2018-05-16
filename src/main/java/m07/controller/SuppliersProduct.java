@@ -67,6 +67,7 @@ public class SuppliersProduct {
     }
 
 
+
     // Edit category
     @RequestMapping(value = "/admin/editsuppliers", method = RequestMethod.GET)
     public String editSupper(@RequestParam("id") int id,

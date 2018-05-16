@@ -37,7 +37,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
         .loginProcessingUrl("/j_spring_security_check")
         .usernameParameter("id").passwordParameter("password")
         // sau khi submit form login thanh cong
-        .defaultSuccessUrl("/admin/report/")
+        .defaultSuccessUrl("/home")
         .failureUrl("/login?error=failed").and().exceptionHandling().accessDeniedPage("/login?error=deny")
         .and().logout().logoutUrl("/logout").logoutSuccessUrl("/");
   }

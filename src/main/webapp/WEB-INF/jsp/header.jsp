@@ -1,5 +1,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@taglib uri="http://www.springframework.org/tags" prefix="spring" %>
+<%@ taglib uri="http://www.springframework.org/security/tags" prefix="security" %>
+
 <%--
   Created by IntelliJ IDEA.
   User: PC
@@ -48,18 +50,21 @@
     </div>
     <div class="agile-login">
       <ul>
-        <c:if test="${id == null}">
+        <security:authorize access="hasRole('ROLE_ADMIN')">
+          <li><a href="/admin/dashboard"><i class="fa fa fa-pencil-square-o" aria-hidden="true"></i>ADMIN</a></li>
+        </security:authorize>
+        <security:authorize access="isAnonymous()">
           <li><a href="/registered"><i class="fa fa fa-pencil-square-o" aria-hidden="true"></i> <spring:message code="create" text="default text"/></a></li>
-          <li><a href="#" id="signin" data-toggle="modal" data-target="#myModal"><i class="fa fa-unlock-alt" aria-hidden="true"></i> <spring:message code="login" text="default text"/></a></li>
-        </c:if>
-        <c:if test="${id != null}">
+          <li><a href="/login"><i class="fa fa-unlock-alt" aria-hidden="true"></i> <spring:message code="login" text="default text"/></a></li>
+        </security:authorize>
+        <security:authorize access="isAuthenticated()">
           <a href="" class="dropdown-toggle" data-toggle="dropdown">
             <i class="fa fa-user" aria-hidden="true"></i> Xin chào: ${id}
           </a>
           <li><a href="listordercus?customerId=${id}"><i class="fa fa-book"></i> Đơn Hàng</a></li>
           <li><a href="productbycustome?customerId=${id}"><i class="fa fa-shopping-cart"></i> Sản Phẩm Đã Mua</a></li>
           <li><a href="/logout"><i class="fa fa-sign-out"></i> Log Out</a></li>
-        </c:if>
+        </security:authorize>
         <ul class="dropdown-menu">
           <li><a href="/login">Login </a></li>
           <li><a href="signup.html">Sign Up</a></li>
@@ -81,11 +86,11 @@
   <div class="container">
     <div class="w3ls_logo_products_left1">
       <ul class="phone_email">
-        <li><i class="fa fa-phone" aria-hidden="true"></i>Order online or call us : (+84) 976 704 644</li>
+        <li><i class="fa fa-phone" aria-hidden="true"></i>Order online or call us : +84 988 604 425</li>
       </ul>
     </div>
     <div class="w3ls_logo_products_left">
-      <h1><a href="/">Yumi Shop</a></h1>
+      <h1><a href="/">TRENDING SHOP</a></h1>
     </div>
     <div class="w3l_search">
       <form action="/header" method="post">
@@ -188,23 +193,6 @@
       </div>
     </nav>
   </div>
-</div>
-<div id="myModal"  class="modal fade" tabindex="-1" role="dialog">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title">This is Modal</h4>
-      </div>
-      <div class="modal-body">
-        <p>Modal body</p>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
-      </div>
-    </div><!-- /.modal-content -->
-  </div><!-- /.modal-dialog -->
 </div>
 </body>
 </html>

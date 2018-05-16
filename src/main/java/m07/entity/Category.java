@@ -2,6 +2,7 @@ package m07.entity;
 
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.hibernate.validator.constraints.NotBlank;
 import org.hibernate.validator.constraints.NotEmpty;
 
@@ -31,6 +32,7 @@ public class Category implements Serializable{
 	String name;
 
 	@OneToMany(mappedBy="category", fetch=FetchType.EAGER)
+	@JsonIgnore
 	Collection<Product> products;
 
 	public Integer getId() {
